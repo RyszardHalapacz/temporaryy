@@ -12,6 +12,7 @@ void DatabaseHandler::run()
         {
             std::lock_guard<std::mutex> blockMutex(mut);
             handlingEvent();
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             vecEvent.pop_back();
         }
     }

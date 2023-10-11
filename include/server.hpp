@@ -20,9 +20,16 @@ class Server : public::httplib::Server
             
             vecHadler.emplace_back(std::move(dbHandler));
         }
+    };
+    ~Server() {
+    for (auto& handler : vecHadler) {
+        handler->DbThread.join();
     }
+}
+
 
     void run();
+    uint32_t getReqNum(uint32_t i ) {return vecHadler[i]->handlingEvent();};
     global::DatabaseConntetion::status addEvent();
     uint32_t getMaxThread () {return maxThreads_;};
     private:

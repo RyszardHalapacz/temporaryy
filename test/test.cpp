@@ -28,4 +28,5 @@ TEST_F(testServer, CheckAddEvent)
 {
   using namespace global::DatabaseConntetion;
   EXPECT_EQ(serv->addEvent(), status::succes);
+  //EXPECT_EQ(serv->getReqNum(0),10);
 }
