@@ -14,7 +14,6 @@ class DatabaseHandler
 {
     public:
     DatabaseHandler(){
-       // DbThread(&DatabaseHandler::run, this);
 
 
     };
