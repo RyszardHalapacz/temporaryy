@@ -4,6 +4,12 @@ project(MyApp)
 #set(CMAKE_CXX_COMPILER "clang++")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE "Release")
+
+option(DEBUG_MODE "Enable debugging mode" OFF)
+if (DEBUG_MODE)
+    set(CMAKE_BUILD_TYPE "Debug")
+endif()
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 include_directories("${CMAKE_SOURCE_DIR}/lib")
@@ -20,6 +26,8 @@ FetchContent_MakeAvailable(googletest)
 
 #GTEST
 enable_testing()
+#cmake -DDEBUG_MODE=ON ..
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
 set (MY_SOURCES
 src/server.cpp

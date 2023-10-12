@@ -16,16 +16,12 @@ class Server : public::httplib::Server
         {
             std::unique_ptr<DatabaseHandler> dbHandler = std::make_unique<DatabaseHandler>();
             
-            dbHandler->DbThread = std::thread(&DatabaseHandler::run, dbHandler.get());
+            //dbHandler->DbThread = std::thread(&DatabaseHandler::run, dbHandler.get());
             
-            vecHadler.emplace_back(std::move(dbHandler));
+            //vecHadler.emplace_back(std::move(dbHandler));
         }
     };
-    ~Server() {
-    for (auto& handler : vecHadler) {
-        handler->DbThread.join();
-    }
-}
+   
 
 
     void run();

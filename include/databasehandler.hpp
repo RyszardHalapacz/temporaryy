@@ -18,7 +18,7 @@ class DatabaseHandler
 
     };
     ~DatabaseHandler() {
-    DbThread.join();
+    //DbThread.join();
 }
     DatabaseHandler(std::string&, uint32_t ){};
     void run();
