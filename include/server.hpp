@@ -10,22 +10,25 @@
 class Server : public::httplib::Server
 {
     public :
-    Server() :maxThreads_(static_cast<uint32_t>(std::thread::hardware_concurrency()))
+    Server(uint32_t thread = static_cast<uint32_t>(std::thread::hardware_concurrency())) :maxThreads_(thread)
     {
         for (uint32_t i = 0; i < maxThreads_; ++i)
         {
-            std::unique_ptr<DatabaseHandler> dbHandler = std::make_unique<DatabaseHandler>();
-            
-            //dbHandler->DbThread = std::thread(&DatabaseHandler::run, dbHandler.get());
-            
-            //vecHadler.emplace_back(std::move(dbHandler));
+            vecHadler.emplace_back(std::make_unique<DatabaseHandler>());
         }
     };
+    ~Server()
+    {
+        vecHadler.clear();
+    }
    
 
 
     void run();
-    uint32_t getReqNum(uint32_t i ) {return vecHadler[i]->handlingEvent();};
+    uint32_t getReqNum(uint32_t i ) {
+        
+        return vecHadler[i]->handlingEvent();
+        };
     global::DatabaseConntetion::status addEvent();
     uint32_t getMaxThread () {return maxThreads_;};
     private:
