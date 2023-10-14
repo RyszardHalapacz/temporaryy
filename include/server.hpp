@@ -19,6 +19,7 @@ class Server : public::httplib::Server
     };
     ~Server()
     {
+        for(auto & it : vecHadler) it->terminateThreads();
         vecHadler.clear();
     }
    

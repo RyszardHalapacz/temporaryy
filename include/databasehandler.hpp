@@ -27,10 +27,10 @@ class DatabaseHandler
 }
     DatabaseHandler(std::string&, uint32_t ){};
     void run();
+    void terminateThreads(){isActive=false;};
     global::DatabaseConntetion::status addEvent(/*param of event*/);
     uint32_t  handlingEvent()
     { 
-        temporary_break= true;
         return vecEvent.size();
     };
     private:
@@ -39,6 +39,6 @@ class DatabaseHandler
     public:
     std::thread DbThread;
     public:
-    bool temporary_break  {false};
+    bool isActive  {true};
 
 };

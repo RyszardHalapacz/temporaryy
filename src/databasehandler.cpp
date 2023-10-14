@@ -2,7 +2,7 @@
 
 void DatabaseHandler::run()
 {
-    while(true)
+    while(isActive)
     {
         if(vecEvent.empty()) 
         {
@@ -15,8 +15,6 @@ void DatabaseHandler::run()
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             vecEvent.pop_back();
         }
-        if(temporary_break==true) break;
-
     }
 }
 global::DatabaseConntetion::status DatabaseHandler::addEvent(/*param of event*/)
