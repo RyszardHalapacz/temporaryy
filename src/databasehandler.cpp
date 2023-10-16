@@ -1,5 +1,17 @@
 #include "databasehandler.hpp"
 
+DatabaseHandler::DatabaseHandler()
+{
+    DbThread = std::thread(&DatabaseHandler::run,this);
+}
+
+DatabaseHandler::~DatabaseHandler()
+{
+    if (DbThread.joinable()) 
+    {
+        DbThread.join();
+    }
+}
 void DatabaseHandler::run()
 {
     while(isActive)

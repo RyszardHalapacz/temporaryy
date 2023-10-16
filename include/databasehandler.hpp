@@ -13,26 +13,14 @@
 class DatabaseHandler 
 {
     public:
-    DatabaseHandler()
-    {
-        DbThread = std::thread(&DatabaseHandler::run,this);
-    };
-    ~DatabaseHandler() 
-    {
-        if (DbThread.joinable()) 
-        {
-            DbThread.join();
-        }
+    DatabaseHandler();   
+    ~DatabaseHandler(); 
 
-}
     DatabaseHandler(std::string&, uint32_t ){};
     void run();
     void terminateThreads(){isActive=false;};
     global::DatabaseConntetion::status addEvent(/*param of event*/);
-    uint32_t  handlingEvent()
-    { 
-        return vecEvent.size();
-    };
+    uint32_t  handlingEvent() { return vecEvent.size();};
     private:
     std::vector<Event> vecEvent{};
     std::mutex mut;  

@@ -32,7 +32,3 @@ TEST_F(testServer, CheckAddEvent)
   EXPECT_EQ(serv->getReqNum(0),1);
 }
 
-TEST_F(testServer, ChecksdAddEvent) 
-{
-
-}

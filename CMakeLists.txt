@@ -31,7 +31,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
 set (MY_SOURCES
 src/server.cpp
-src/databasehandler.cpp)
+src/databasehandler.cpp
+src/httpserver.cpp
+)
+
 set(TEST_SOURCES 
 ${MY_SOURCES}  
 test/test.cpp)
@@ -50,6 +53,7 @@ gtest_discover_tests(main_test)
 
 
 add_executable(MyApp 
+  ${MY_SOURCES}  
     src/main.cpp 
 )
 target_link_libraries(MyApp -lpqxx -lpq)

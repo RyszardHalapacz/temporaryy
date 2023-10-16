@@ -1,7 +1,9 @@
-
+#include "server.hpp"
 
 int main()
 {
+    Server serv;
+    serv.run();
     return 0;
 }
 
